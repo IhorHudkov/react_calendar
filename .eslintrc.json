@@ -23,6 +23,13 @@
     "react/react-in-jsx-scope": "off",
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "jsx-a11y/label-has-associated-control": "off",
-    "no-restricted-syntax": "off"
+    "no-restricted-syntax": "off",
+    "no-undef":"off",
+    "no-alert":"off",
+    "no-console":"off",
+    "no-use-before-define":"off",
+    "react-hooks/exhaustive-deps":"off",
+    "no-useless-escape":"off",
+    "no-bitwise":"off"
   }
 }

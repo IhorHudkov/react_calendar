@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from "react-router-dom";
 import SelectForCreateEventPage from './SelectForCreateEventPage';
 import '../styles/create-event.scss';
+import createEventFormHandler from '../applicationScripts/createEventFormScript';
 
 function CreateEventForm() {
+    useEffect(createEventFormHandler);
     return (
         <>
             <p>

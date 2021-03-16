@@ -1,9 +1,11 @@
-import React from 'react';
+import { React, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import fillCalendar from '../fillCalendar';
 import '../styles/Calendar.scss';
 import SelectForCalendar from './SelectForCalendar';
 
 export default function Calendar() {
+  useEffect(() => { fillCalendar('all'); });
   return (
     <div className="container">
       <nav className="navbar navbar-light bg-light">
