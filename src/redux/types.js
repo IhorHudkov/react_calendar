@@ -1,0 +1,9 @@
+export const CREATE_EVENT = 'EVENT/CREATE_EVENT';
+export const READ_EVENT = 'EVENT/READ_EVENT';
+export const READ_EVENTS = 'EVENT/READ_EVENTS';
+export const UPDATE_EVENT = 'EVENT/UPDATE_EVENT';
+export const DELETE_EVENT = 'EVENT/DELETE_EVENT';
+
+export const SHOW_LOADER = 'APP/SHOW_LOADER';
+export const HIDE_LOADER = 'APP/HIDE_LOADER';
+

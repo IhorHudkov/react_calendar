@@ -1,11 +1,76 @@
-import React, { useEffect } from 'react';
+import { React, useEffect } from 'react';
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux';
 import SelectForCreateEventPage from './SelectForCreateEventPage';
 import '../styles/create-event.scss';
-import createEventFormHandler from '../applicationScripts/createEventFormScript';
+import { Loader } from './Loader';
+import { createEvent } from '../redux/actions';
 
 function CreateEventForm() {
-    useEffect(createEventFormHandler);
+    const dispatch = useDispatch();
+    const loading = useSelector((state) => state.app.loading);
+    useEffect(
+        () => {
+
+            const form = document.forms.eventForm;
+            const nameInput = form.name;
+            const dayInput = form.day;
+            const timeInput = form.time;
+
+            const isNameInputCorrect = () => {
+                if (!nameInput.value.trim()) {
+                    nameInput.classList.add('input-error');
+                    return false;
+                }
+                nameInput.classList.remove('input-error');
+                return true;
+            };
+
+            const isDayInputCorrect = () => {
+                if (dayInput.value === 'Choose...') {
+                    dayInput.classList.add('input-error');
+                    return false;
+                }
+                dayInput.classList.remove('input-error');
+                return true;
+            };
+
+            const isTimeInputCorrect = () => {
+                if (timeInput.value === 'Choose...') {
+                    timeInput.classList.add('input-error');
+                    return false;
+                }
+                timeInput.classList.remove('input-error');
+                return true;
+            };
+
+
+            form.onsubmit = (e) => {
+                e.preventDefault();
+
+                if (!isNameInputCorrect() | !isDayInputCorrect() | !isTimeInputCorrect()) return;
+
+                const participantsCheckboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+
+                const participants = [];
+
+                participantsCheckboxes.forEach((item) => {
+                    const label = document.querySelector(`label[for="${item.id}"`);
+                    participants.push(label.textContent.trim());
+                });
+
+                const newEvent = {
+                    name: nameInput.value,
+                    participants,
+                    dayTime: `${dayInput.value} ${timeInput.value}`
+                };
+                dispatch(createEvent(newEvent));
+            };
+        }
+    );
+
+    if (loading) return <Loader />
+
     return (
         <>
             <p>
@@ -20,7 +85,7 @@ function CreateEventForm() {
                         placeholder="Name of the event"
                         maxLength="60"
                     />
-                   <SelectForCreateEventPage />
+                    <SelectForCreateEventPage />
                     <div className="input-group mb-3">
                         <label className="input-group-text" htmlFor="day">Day</label>
                         <select className="form-select" id="day">
@@ -56,5 +121,7 @@ function CreateEventForm() {
         </>
     );
 };
+
+
 
 export default CreateEventForm;

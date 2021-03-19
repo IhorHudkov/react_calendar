@@ -30,6 +30,8 @@
     "no-use-before-define":"off",
     "react-hooks/exhaustive-deps":"off",
     "no-useless-escape":"off",
-    "no-bitwise":"off"
+    "no-bitwise":"off",
+    "import/prefer-default-export": "off",
+    "arrow-body-style":"off"
   }
 }

@@ -1,10 +1,11 @@
 import { React, useEffect } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import fillCalendar from '../fillCalendar';
 import '../styles/Calendar.scss';
 import SelectForCalendar from './SelectForCalendar';
 
-export default function Calendar() {
+const Calendar = () => {
   useEffect(() => { fillCalendar('all'); });
   return (
     <div className="container">
@@ -109,3 +110,5 @@ export default function Calendar() {
     </div>
   );
 };
+
+export default connect()(Calendar);
